@@ -1,7 +1,7 @@
 local def = {
 	name = "grenade:explosion",
 	description = "Grenade Explosion (you hacker you!)",
-	radius = 3,
+	radius = 2,
 	tiles = {
 		side = "default_dirt.png",
 		top = "default_dirt.png",
@@ -38,7 +38,7 @@ minetest.register_entity("grenade:grenade", {
 	collisionbox = {-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
 	textures = {"default_coal_lump.png"},
 	on_activate = function(self, staticdata)
-		self.timer = 0
+		self.timer = 2
 	end,
 	on_step = function(self, dtime)
 		local acc = self.object:getacceleration()
@@ -49,4 +49,18 @@ minetest.register_entity("grenade:grenade", {
 			tnt.boom(self.object:getpos(), def)
 		end
 	end,
+})
+minetest.register_craft({
+    output = "grenade:grenade",
+	recipe = {
+	         {"", "group:stick", ""},
+			 {"group:wood", "default:coal_lump", "group:wood"},
+			 {"", "group:wood", ""}
+	             
+	}
+
+
+
+
+
 })
